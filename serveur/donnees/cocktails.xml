@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<listeCocktails>
+  <cocktail>
+    <id>1</id>
+    <nom>Mojito</nom>
+    <type>45</type>
+    <ingredients>Grenadine</ingredients>
+    <prix>100</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/metwgh1606770327.jpg</image>
+    <msgForm/>
+  </cocktail>
+  <cocktail>
+    <id>2</id>
+    <nom>Piña Colada</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Rhum</ingredients>
+    <ingredients>Crème de coco</ingredients>
+    <ingredients>Jus d&#x27;ananas</ingredients>
+    <prix>10</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/cpf4j51504371346.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>4</id>
+    <nom>Margarita</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Tequila</ingredients>
+    <ingredients>Triple sec</ingredients>
+    <ingredients>Citron vert</ingredients>
+    <prix>100</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>5</id>
+    <nom>Daiquiri</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Rhum</ingredients>
+    <ingredients>Citron vert</ingredients>
+    <ingredients>Sucre</ingredients>
+    <prix>11</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/mrz9091589574515.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>6</id>
+    <nom>Caipirinha</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Cachaça</ingredients>
+    <ingredients>Citron vert</ingredients>
+    <ingredients>Sucre</ingredients>
+    <prix>10.5</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/jgvn7p1582484435.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>7</id>
+    <nom>Gin Tonic Grande</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Gin</ingredients>
+    <ingredients>Tonic</ingredients>
+    <ingredients>Citron</ingredients>
+    <prix>9</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/qcgz0t1643821443.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>8</id>
+    <nom>Tequila Sunrise</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Tequila</ingredients>
+    <ingredients>Jus d&#x27;orange</ingredients>
+    <ingredients>Grenadine</ingredients>
+    <prix>12</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/quqyqp1480879103.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>9</id>
+    <nom>Mai Tai</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Rhum</ingredients>
+    <ingredients>Lime</ingredients>
+    <ingredients>Triple sec</ingredients>
+    <ingredients>Orgeat syrup</ingredients>
+    <prix>14</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/twyrrp1439907470.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>10</id>
+    <nom>Sex on the Beach</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Vodka</ingredients>
+    <ingredients>Cranberry</ingredients>
+    <ingredients>Orange juice</ingredients>
+    <ingredients>Peach schnapps</ingredients>
+    <prix>13.5</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/lijtw51551455287.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>11</id>
+    <nom>Cosmopolitan</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Vodka</ingredients>
+    <ingredients>Triple sec</ingredients>
+    <ingredients>Lime juice</ingredients>
+    <ingredients>Cranberry juice</ingredients>
+    <prix>15</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/kpsajh1504368362.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>12</id>
+    <nom>Whiskey Sour</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Whiskey</ingredients>
+    <ingredients>Lemon juice</ingredients>
+    <ingredients>Sugar</ingredients>
+    <ingredients>Egg white</ingredients>
+    <prix>14</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/hbkfsh1589574990.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>13</id>
+    <nom>Old Fashioned</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Whiskey</ingredients>
+    <ingredients>Bitters</ingredients>
+    <ingredients>Sugar</ingredients>
+    <ingredients>Water</ingredients>
+    <prix>16</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>14</id>
+    <nom>Pisco Sour</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Pisco</ingredients>
+    <ingredients>Lime juice</ingredients>
+    <ingredients>Simple syrup</ingredients>
+    <ingredients>Egg white</ingredients>
+    <prix>15.5</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/tsssur1439907622.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>15</id>
+    <nom>Long Island Iced Tea</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Vodka</ingredients>
+    <ingredients>Tequila</ingredients>
+    <ingredients>Rum</ingredients>
+    <ingredients>Gin</ingredients>
+    <ingredients>Triple sec</ingredients>
+    <prix>16</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/wx7hsg1504370510.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>16</id>
+    <nom>Cuba Libre</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Rum</ingredients>
+    <ingredients>Cola</ingredients>
+    <ingredients>Lime juice</ingredients>
+    <prix>10</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/uuxsrr1473201663.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>17</id>
+    <nom>Aperol Spritz</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Aperol</ingredients>
+    <ingredients>Prosecco</ingredients>
+    <ingredients>Soda</ingredients>
+    <prix>12</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/iloasq1587661955.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>18</id>
+    <nom>Negroni</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Gin</ingredients>
+    <ingredients>Campari</ingredients>
+    <ingredients>Sweet Vermouth</ingredients>
+    <prix>13</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>19</id>
+    <nom>Tom Collins</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Gin</ingredients>
+    <ingredients>Lemon juice</ingredients>
+    <ingredients>Sugar</ingredients>
+    <ingredients>Soda</ingredients>
+    <prix>9.5</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/7cll921606854636.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>20</id>
+    <nom>Mint Julep</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Bourbon</ingredients>
+    <ingredients>Mint</ingredients>
+    <ingredients>Sugar</ingredients>
+    <ingredients>Water</ingredients>
+    <prix>11</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/squyyq1439907312.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>21</id>
+    <nom>White Russian</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Vodka</ingredients>
+    <ingredients>Kahlúa</ingredients>
+    <ingredients>Crème</ingredients>
+    <prix>14</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/vsrupw1472405732.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>23</id>
+    <nom>Manhattan</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Rye Whiskey</ingredients>
+    <ingredients>Sweet Vermouth</ingredients>
+    <ingredients>Bitters</ingredients>
+    <prix>17</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/yk70e31606771240.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>24</id>
+    <nom>Irish Coffee</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Irish Whiskey</ingredients>
+    <ingredients>Hot Coffee</ingredients>
+    <ingredients>Sugar</ingredients>
+    <ingredients>Cream</ingredients>
+    <prix>10</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/sywsqw1439906999.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>25</id>
+    <nom>Sidecar</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Cognac</ingredients>
+    <ingredients>Triple sec</ingredients>
+    <ingredients>Lemon juice</ingredients>
+    <prix>12</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/ewjxui1504820428.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>26</id>
+    <nom>French 75</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Gin</ingredients>
+    <ingredients>Champagne</ingredients>
+    <ingredients>Lemon juice</ingredients>
+    <ingredients>Sugar</ingredients>
+    <prix>16</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/hrxfbl1606773109.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>27</id>
+    <nom>Sazerac</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Rye Whiskey</ingredients>
+    <ingredients>Absinthe</ingredients>
+    <ingredients>Sugar</ingredients>
+    <ingredients>Bitters</ingredients>
+    <prix>18</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/vvpxwy1439907208.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>28</id>
+    <nom>Bellini</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Prosecco</ingredients>
+    <ingredients>Peach puree</ingredients>
+    <prix>11.5</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/eaag491504367543.jpg</image>
+  </cocktail>
+  <cocktail>
+    <id>29</id>
+    <nom>Paloma</nom>
+    <type>Alcoolisé</type>
+    <ingredients>Tequila</ingredients>
+    <ingredients>Grapefruit soda</ingredients>
+    <ingredients>Lime juice</ingredients>
+    <prix>13</prix>
+    <image>https://www.thecocktaildb.com/images/media/drink/samm5j1513706393.jpg</image>
+  </cocktail>
+</listeCocktails>

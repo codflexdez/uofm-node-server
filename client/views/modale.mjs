@@ -16,6 +16,7 @@ export const ouvrirModaleAjouter = () => {
 };
 
 export const ouvrirModaleModifier = (cocktail) => {
+ console.log(cocktail);
  
   titreModal.innerHTML = "Modifier le Cocktail";
 

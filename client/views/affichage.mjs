@@ -1,28 +1,31 @@
-import { afficherPage, genererPagination } from './pagination.js'
-
+import { afficherPage, genererPagination } from './pagination.mjs'
 
 const ficheCocktail = (cocktail) => {
+  
+const { id, nom, type, ingredients, prix, image } = cocktail;
+
+
   // Fonction pour afficher la liste des cocktails dans le DOM avec alternance de couleur de fond
-  let i = cocktail.id;
+
   const cardColor = cocktail.id % 2 === 0 ? " card-color" : "";
   return `
   <div class="card mb-3 ${cardColor}">
     <div class="d-flex flex-wrap align-items-center gap-1">
       
-      <img src="${cocktail.image}" class="img img-fluid rounded-start"  alt="${cocktail.nom}-${i}" />
+      <img src="${image}" class="img img-fluid rounded-start"  alt="${nom}-${id}" />
     
       <div class="card-body">
-        <h5 class="card-title">${cocktail.nom}</h5>
-        <p class="card-text">Type: ${cocktail.type}</p>
-        <p class="card-text">Prix: ${cocktail.prix} €</p>
-        <p class="card-text ingredients"><strong>Ingrédients:</strong> ${cocktail.ingredients.join(', ')}</p>
+        <h5 class="card-title">${nom}</h5>
+        <p class="card-text">Type: ${type}</p>
+        <p class="card-text">Prix: ${prix} €</p>
+        
       </div>
       <div class="buttons">
-        <button class="btn btn-outline-primary btn-modifier" data-id="${i}">
-            <i class="bi bi-pencil" data-id="${i}"></i>
+        <button class="btn btn-outline-primary btn-modifier" data-id="${id}">
+            <i class="bi bi-pencil" data-id="${id}"></i>
         </button>
-        <button class="btn btn-outline-danger btn-supprimer" data-id="${i}">
-            <i class="bi bi-trash" data-id="${i}"></i>
+        <button class="btn btn-outline-danger btn-supprimer" data-id="${id}">
+            <i class="bi bi-trash" data-id="${id}"></i>
         </button>
       </div>
     </div>

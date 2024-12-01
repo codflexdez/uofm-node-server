@@ -63,7 +63,6 @@ export const modifier = async (id, element) => {
   };
 
 
-
 // Supprimer un élément
 export const supprimer = async (id) => {
   try {

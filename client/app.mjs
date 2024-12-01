@@ -1,8 +1,8 @@
-import { afficherListeParPage } from "./modules/affichage.js";
-import { ajouter, fetchListe, supprimer, modifier } from "./modules/api.js";
-import { ouvrirModaleAjouter, ouvrirModaleModifier } from "./modules/modale.js";
-import { formValidation } from "./modules/validation.js";
-import { afficherToast } from "./modules/notifications.js";
+import { afficherListeParPage } from "./views/affichage.mjs";
+import { afficherToast } from "./views/notifications.mjs";
+import { ouvrirModaleAjouter, ouvrirModaleModifier } from "./views/modale.mjs";
+import { chargerCocktailsFETCH, modifier, ajouter, supprimer } from "./controller/cocktailController.mjs";
+import { formValidation } from "./modules/validation.mjs";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const modalBtn = document.querySelector("#btnAjouter");
@@ -30,9 +30,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     image: document.querySelector("#image"),
     ingredients: document.querySelector("#ingredients"),
   };
-  let liste = await fetchListe();
+  let liste = await chargerCocktailsFETCH();
   afficherListeParPage(liste);
 
+  
   // Gestion du bouton Ajouter
   modalBtn.addEventListener("click", ouvrirModaleAjouter);
   btnEnreg.addEventListener("click", () =>
@@ -65,7 +66,6 @@ const mettreAJourUI = (liste, objOptions) => {
       cocktail.type?.toLowerCase().includes(critere)
     );
   }
-
   // Appliquer la recherche
   if (rechercheTerme) {
     listeFiltre = listeFiltre.filter((cocktail) => {
@@ -78,7 +78,6 @@ const mettreAJourUI = (liste, objOptions) => {
       );
     });
   }
-
   // Appliquer le tri
   if (triCritere && triCritere !== "trier par") {
     listeFiltre.sort((a, b) => {
@@ -91,11 +90,8 @@ const mettreAJourUI = (liste, objOptions) => {
       return 0;
     });
   }
-
-  // Mettre à jour l'affichage
-  afficherListeParPage(listeFiltre);
+  afficherListeParPage(listeFiltre); // Mettre à jour l'affichage
 };
-
 
 const handleAjouterOuModifier = async (champsForm, liste, msgForm) => {
   const { nom, type, prix, image, ingredients } = champsForm;
@@ -110,9 +106,7 @@ const handleAjouterOuModifier = async (champsForm, liste, msgForm) => {
     image: image.value.trim(),
   };
 
-  // validation de formulaire
-  const { estValide, msgErreur } = formValidation(dataForm);
-
+  const { estValide, msgErreur } = formValidation(dataForm);      // validation de formulaire
   if (!estValide) {
     msgForm.innerHTML = "";
     msgErreur.forEach((err) => {
@@ -120,13 +114,11 @@ const handleAjouterOuModifier = async (champsForm, liste, msgForm) => {
     });
     return false;
   }
-
   msgForm.innerHTML = "";
 
   // Déterminer si l'ajout ou la modification
   const isEditing = !!image.dataset.id;
   const cocktailId = isEditing ? parseInt(image.dataset.id) :  Math.max(...liste.map(cocktail => cocktail.id), 0) + 1;
-
 
   // Ajouter ou mettre à jour le cocktail
   const cocktail = { id: cocktailId, ...dataForm };
@@ -134,15 +126,12 @@ const handleAjouterOuModifier = async (champsForm, liste, msgForm) => {
     ? await modifier(cocktailId, cocktail)
     : await ajouter(cocktail);
 
-  if (response.msg.includes("succes")) {
-    // Fournir des commentaires et mettre à jour la liste
+  if (response.msg.includes("succes")) {      // Fournir des commentaires et mettre à jour la liste
     msgForm.innerHTML = response.msg;
-    // Modifier cocktail
-    if (isEditing) {
+    if (isEditing) {                          // Modifier cocktail
       mettreAjourCocktails(cocktail, liste);
-    } else {
-      // Ajouter un nouveau cocktail
-      cocktail.id = cocktailId;
+    } else {                                  // Ajouter un nouveau cocktail
+      cocktail.id = cocktailId; 
       liste.push(cocktail);
       afficherListeParPage(liste);
     }
@@ -161,30 +150,27 @@ const mettreAjourCocktails = (cocktail, liste) => {
   }
 };
 
-// Gestion des boutons Modifier et Supprimer
-const actionsSupprimerOuModifier = (e, liste) => {
-  let target = e.target;
+const actionsSupprimerOuModifier = (e, liste) => {       
+  let target = e.target;   // Gestion des boutons Modifier et Supprimer
   let cocktailId = parseInt(target.dataset.id);
+
   if (e.target.classList.contains("bi-pencil")) {
-    const cocktail = liste.find((item) => item.id === cocktailId);
+   
+    const cocktail = liste.find((item) => +item.id === cocktailId);
+
     ouvrirModaleModifier(cocktail);
+
   } else if (e.target.classList.contains("bi-trash")) {
-    // Récupérer l'ID de l'élément à supprimer
-
-    // Afficher le toast de confirmation
-    afficherToast(
+    afficherToast(                                        // Récupérer l'ID de l'élément à supprimer
       "Êtes-vous sûr de vouloir supprimer cet élément ?", // Message
-      "warning", // Type (warning pour avertissement)
-      "Confirmation", // Titre
-      true, // Avec confirmation (true)
+      "warning",                                          // Type (warning pour avertissement)
+      "Confirmation",                                     // Titre
+      true,                                               // Avec confirmation (true)
       async () => {
-        // Fonction callback pour confirmer la suppression
-        const response = await supprimer(cocktailId);
-
+        const response = await supprimer(cocktailId);     // Fonction callback pour confirmer la suppression
         if (response.msg.includes("succes")) {
-          // Mettre à jour la liste avec les données du serveur
-          liste = response.liste;
-          afficherListeParPage(liste); // Mise à jour de l'affichage
+          liste = response.liste;                         // Mettre à jour la liste avec les données du serveur
+          afficherListeParPage(liste);                    // Mise à jour de l'affichage
         } else {
           msgForm.innerHTML = response.msg;
         }
