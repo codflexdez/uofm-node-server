@@ -1,0 +1,17 @@
+{
+  "name": "client-server",
+  "description": "Travail sur les cocktails stockés dans un fichier JSON",
+  "version": "1.0.0",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "node serveur/serveur.js"
+  },
+  "author": "Roman Potachenski",
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.1"
+  }
+}
