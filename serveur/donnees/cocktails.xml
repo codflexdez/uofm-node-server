@@ -1,23 +1,26 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <listeCocktails>
   <cocktail>
     <id>1</id>
     <nom>Mojito</nom>
     <type>45</type>
     <ingredients>Grenadine</ingredients>
-    <prix>100</prix>
+    <prix>45</prix>
     <image>https://www.thecocktaildb.com/images/media/drink/metwgh1606770327.jpg</image>
-    <msgForm/>
-  </cocktail>
+    
+  <ingredient>Grenadine</ingredient></cocktail>
   <cocktail>
     <id>2</id>
-    <nom>Piña Colada</nom>
+    <nom>Colada</nom>
     <type>Alcoolisé</type>
     <ingredients>Rhum</ingredients>
     <ingredients>Crème de coco</ingredients>
-    <ingredients>Jus d&#x27;ananas</ingredients>
+    <ingredients>Jus d'ananas</ingredients>
     <prix>10</prix>
     <image>https://www.thecocktaildb.com/images/media/drink/cpf4j51504371346.jpg</image>
+    <ingredient>Rhum</ingredient>
+    <ingredient>Crème de coco</ingredient>
+    <ingredient>Jus d'ananas</ingredient>
   </cocktail>
   <cocktail>
     <id>4</id>
@@ -36,8 +39,11 @@
     <ingredients>Rhum</ingredients>
     <ingredients>Citron vert</ingredients>
     <ingredients>Sucre</ingredients>
-    <prix>11</prix>
+    <prix>45</prix>
     <image>https://www.thecocktaildb.com/images/media/drink/mrz9091589574515.jpg</image>
+    <ingredient>Rhum</ingredient>
+    <ingredient>Citron vert</ingredient>
+    <ingredient>Sucre</ingredient>
   </cocktail>
   <cocktail>
     <id>6</id>
@@ -64,7 +70,7 @@
     <nom>Tequila Sunrise</nom>
     <type>Alcoolisé</type>
     <ingredients>Tequila</ingredients>
-    <ingredients>Jus d&#x27;orange</ingredients>
+    <ingredients>Jus d'orange</ingredients>
     <ingredients>Grenadine</ingredients>
     <prix>12</prix>
     <image>https://www.thecocktaildb.com/images/media/drink/quqyqp1480879103.jpg</image>
@@ -281,4 +287,7 @@
     <prix>13</prix>
     <image>https://www.thecocktaildb.com/images/media/drink/samm5j1513706393.jpg</image>
   </cocktail>
+  
+  
+  
 </listeCocktails>

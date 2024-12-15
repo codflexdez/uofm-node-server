@@ -4,6 +4,7 @@ let creerObjetsListeCocktails = (listeCocktailsDOM) => {
     const listeObjetsCocktails = [];
     
     for (let unCocktailDOM of listeCocktailsDOM) {
+  
       let id = unCocktailDOM.getElementsByTagName("id")[0]?.textContent.trim();
       let nom = unCocktailDOM.getElementsByTagName("nom")[0]?.textContent.trim();
       let type = unCocktailDOM.getElementsByTagName("type")[0]?.textContent.trim();
@@ -58,8 +59,6 @@ let creerObjetsListeCocktails = (listeCocktailsDOM) => {
   
   // Ajouter un élément
 export const ajouter = async (cocktail) => {
-  console.log(cocktail);
-  
   try {
       const url = "http://localhost:3000/liste";
 
@@ -70,15 +69,14 @@ export const ajouter = async (cocktail) => {
             },
           body: JSON.stringify(cocktail),
         });
-        
+        console.log('post fetch:',JSON.stringify(cocktail));
+
       if (!response.ok) {
           const errorData = await response.json();
           throw new Error(`Erreur de l'enregistrement de cocktail: ${errorData.msg || 'Erreur inconnue'}`);
       }
-      const parser = new DOMParser();
-      const reponseString = await response.text();
-      const racineDOM = parser.parseFromString(reponseString, "application/xml");
-      return racineDOM;
+     
+      return response.json();
   } catch (error) {
       console.error("Erreur lors de l'ajout du cocktail:", error.message);
       return { msg : "Erreur d'enregistrement" };
@@ -97,12 +95,13 @@ export const modifier = async (id, element) => {
       },
       body: JSON.stringify(element),
     });
-
+     
     if (!response.ok) {
       throw new Error(`Erreur lors de la modification de cocktail avec id: ${id}`);
     }
 
     const resultat = await response.json();
+    console.log(response);
     return resultat; 
   } catch (error) {
     console.error("Erreur dans la fonction modifier:", error);
@@ -113,6 +112,8 @@ export const modifier = async (id, element) => {
 
 // Supprimer un élément
 export const supprimer = async (id) => {
+  console.log(id);
+  
 try {
   const response = await fetch(`/liste/${id}`, {
     method: "DELETE",

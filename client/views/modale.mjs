@@ -25,7 +25,7 @@ export const ouvrirModaleModifier = (cocktail) => {
   prix.value = cocktail.prix;
   image.dataset.id = cocktail.id;
   image.value = cocktail.image;
-  image.dataset.id = cocktail.id;
+ 
 
   montrerIngredients(cocktail.ingredients);
  
