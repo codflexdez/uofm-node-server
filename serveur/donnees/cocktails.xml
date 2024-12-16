@@ -4,10 +4,8 @@
     <id>1</id>
     <nom>Mojito</nom>
     <type>Alcoolisé</type>
-    <prix>10</prix>
-    <ingredients>Gin</ingredients>
-    <ingredients>Lime juice</ingredients>
-    <ingredients>Grenadine</ingredients>
+    <prix>2</prix>
+    <ingredients>Orange juice</ingredients>
     <image>https://www.thecocktaildb.com/images/media/drink/metwgh1606770327.jpg</image>
   </cocktail>
   <cocktail>
@@ -35,10 +33,11 @@
     <id>5</id>
     <nom>Daiquiri</nom>
     <type>Alcoolisé</type>
+    <ingredients>Cherry liqueur</ingredients>
+    <ingredients>Triple sec</ingredients>
     <ingredients>Rhum</ingredients>
-    <ingredients>Citron vert</ingredients>
     <ingredients>Sucre</ingredients>
-    <prix>45</prix>
+    <prix>55</prix>
     <image>https://www.thecocktaildb.com/images/media/drink/mrz9091589574515.jpg</image>
   </cocktail>
   <cocktail>
@@ -282,10 +281,10 @@
     <id>29</id>
     <nom>Paloma</nom>
     <type>Alcoolisé</type>
+    <ingredients>Lime juice</ingredients>
     <ingredients>Tequila</ingredients>
     <ingredients>Grapefruit soda</ingredients>
-    <ingredients>Lime juice</ingredients>
-    <prix>45</prix>
+    <prix>3</prix>
     <image>https://www.thecocktaildb.com/images/media/drink/samm5j1513706393.jpg</image>
   </cocktail>
 </listeCocktails>
