@@ -1,6 +1,6 @@
 {
   "name": "client-server",
-  "description": "Travail sur les cocktails stockés dans un fichier JSON",
+  "description": "Travail sur les cocktails stockés dans un fichier XML",
   "version": "1.0.0",
   "main": "app.js",
   "type": "module",

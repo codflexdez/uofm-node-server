@@ -44,6 +44,7 @@ let creerObjetsListeCocktails = (listeCocktailsDOM) => {
         const listeCocktails = creerObjetsListeCocktails(cocktailsDOM);
   
         console.log("Cocktails chargés :", listeCocktails);
+
         return listeCocktails;
 
 
@@ -100,11 +101,12 @@ export const modifier = async (id, element) => {
       throw new Error(`Erreur lors de la modification de cocktail avec id: ${id}`);
     }
 
+
     const resultat = await response.json();
     console.log(response);
     return resultat; 
   } catch (error) {
-    console.error("Erreur dans la fonction modifier:", error);
+    console.error("Erreur dans la fonction modifier:", error.message);
     return { msg : "Erreur d'enregistrement de cocktail modifé" };
   }
 };
@@ -112,8 +114,6 @@ export const modifier = async (id, element) => {
 
 // Supprimer un élément
 export const supprimer = async (id) => {
-  console.log(id);
-  
 try {
   const response = await fetch(`/liste/${id}`, {
     method: "DELETE",
@@ -126,11 +126,14 @@ try {
     throw new Error(`Erreur lors de la suppression de cocktail avec id: ${id}`);
   }
 
+
   const data = await response.json();
   console.log("Élément supprimé avec succès!");
+  console.log(data);
   return data; 
+ 
 } catch (error) {
-  console.error("Erreur:", error.message);
+  console.error("Erreur de suppression de cocktail:", error.message);
   return { msg: error.message }; 
 }
 };

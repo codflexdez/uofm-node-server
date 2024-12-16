@@ -3,12 +3,13 @@
   <cocktail>
     <id>1</id>
     <nom>Mojito</nom>
-    <type>45</type>
+    <type>Alcoolisé</type>
+    <prix>10</prix>
+    <ingredients>Gin</ingredients>
+    <ingredients>Lime juice</ingredients>
     <ingredients>Grenadine</ingredients>
-    <prix>45</prix>
     <image>https://www.thecocktaildb.com/images/media/drink/metwgh1606770327.jpg</image>
-    
-  <ingredient>Grenadine</ingredient></cocktail>
+  </cocktail>
   <cocktail>
     <id>2</id>
     <nom>Colada</nom>
@@ -16,11 +17,9 @@
     <ingredients>Rhum</ingredients>
     <ingredients>Crème de coco</ingredients>
     <ingredients>Jus d'ananas</ingredients>
+    <ingredients>Vodka</ingredients>
     <prix>10</prix>
     <image>https://www.thecocktaildb.com/images/media/drink/cpf4j51504371346.jpg</image>
-    <ingredient>Rhum</ingredient>
-    <ingredient>Crème de coco</ingredient>
-    <ingredient>Jus d'ananas</ingredient>
   </cocktail>
   <cocktail>
     <id>4</id>
@@ -29,7 +28,7 @@
     <ingredients>Tequila</ingredients>
     <ingredients>Triple sec</ingredients>
     <ingredients>Citron vert</ingredients>
-    <prix>100</prix>
+    <prix>45</prix>
     <image>https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg</image>
   </cocktail>
   <cocktail>
@@ -41,9 +40,6 @@
     <ingredients>Sucre</ingredients>
     <prix>45</prix>
     <image>https://www.thecocktaildb.com/images/media/drink/mrz9091589574515.jpg</image>
-    <ingredient>Rhum</ingredient>
-    <ingredient>Citron vert</ingredient>
-    <ingredient>Sucre</ingredient>
   </cocktail>
   <cocktail>
     <id>6</id>
@@ -150,8 +146,13 @@
     <ingredients>Rum</ingredients>
     <ingredients>Gin</ingredients>
     <ingredients>Triple sec</ingredients>
-    <prix>16</prix>
+    <prix>20</prix>
     <image>https://www.thecocktaildb.com/images/media/drink/wx7hsg1504370510.jpg</image>
+    <ingredient>Gin</ingredient>
+    <ingredient>Vodka</ingredient>
+    <ingredient>Tequila</ingredient>
+    <ingredient>Rum</ingredient>
+    <ingredient>Triple sec</ingredient>
   </cocktail>
   <cocktail>
     <id>16</id>
@@ -259,7 +260,7 @@
   </cocktail>
   <cocktail>
     <id>27</id>
-    <nom>Sazerac</nom>
+    <nom>Sazerack</nom>
     <type>Alcoolisé</type>
     <ingredients>Rye Whiskey</ingredients>
     <ingredients>Absinthe</ingredients>
@@ -284,10 +285,7 @@
     <ingredients>Tequila</ingredients>
     <ingredients>Grapefruit soda</ingredients>
     <ingredients>Lime juice</ingredients>
-    <prix>13</prix>
+    <prix>45</prix>
     <image>https://www.thecocktaildb.com/images/media/drink/samm5j1513706393.jpg</image>
   </cocktail>
-  
-  
-  
 </listeCocktails>

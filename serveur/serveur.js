@@ -4,8 +4,6 @@ import path from "path";
 import cors from "cors";
 import { fileURLToPath } from "url";
 import { DOMParser,  XMLSerializer } from "xmldom";
-import { Cocktail } from "../client/models/Cocktail.mjs";
-
 
 const app = express();
 const PORT = 3000;
@@ -22,196 +20,141 @@ const filePath = path.join(dirPath, "donnees", "cocktails.xml");
 app.use(express.static(path.join(dirPath, "../client")));
 
 
-// Convertir des objets JavaScript en XML
-const oldConverter = (listeCocktails) => {
-    const root = create({ version: "1.0" }).ele("listeCocktails");
-  
-    listeCocktails.forEach((cocktail) => {
-      const cocktailNode = root.ele("cocktail");
-      cocktailNode.ele("id").txt(cocktail.id);
-      cocktailNode.ele("nom").txt(cocktail.nom);
-      cocktailNode.ele("type").txt(cocktail.type);
-      cocktailNode.ele("prix").txt(cocktail.prix);
-      cocktailNode.ele("image").txt(cocktail.image);
-  
-      // Ajouter les ingrédients comme des éléments multiples
-      cocktail.ingredients.forEach((ing) => {
-        cocktailNode.ele("ingredients").txt(ing);
+
+// Mise à jour des nœuds XML correspondant à chaque propriété de l'objet JavaScript cocktail.
+const processCocktailProperties = (xmlDoc, cocktailNode, cocktailData) => {
+  Object.entries(cocktailData).forEach(([key, value]) => {
+    if (key === "ingredients") {
+      // Traitement des ingrédients
+      Array.from(cocktailNode.getElementsByTagName("ingredients")).forEach(node => 
+        cocktailNode.removeChild(node)
+      );
+      value.forEach(ingredient => {
+        const ingredientNode = xmlDoc.createElement("ingredients");
+        ingredientNode.textContent = ingredient;
+        cocktailNode.appendChild(ingredientNode);
       });
-    });
-  
-    return root.end({ prettyPrint: true });
-  };
-
-
-// ROUTES
-// Récupérer la liste des cocktails en XML
-app.get("/liste", (req, res) => {
-  
-  fs.readFile(filePath, "utf8", (err, data) => {
-      if (err) {
-        return res
-          .status(500)
-          .send({msg : "Erreur lors de la lecture du fichier"});
+    } else {
+      // Mise à jour des autre propriétés
+      const existingNode = cocktailNode.getElementsByTagName(key)[0];
+      if (existingNode) {
+        existingNode.textContent = value;
+      } else {
+        const nNode = xmlDoc.createElement(key);
+        nNode.textContent = value;
+        cocktailNode.appendChild(nNode);
       }
-  
-      res.setHeader("Content-Type", "application/xml");
-      res.send(data); 
-    });
+    }
   });
-
-
-
-// Convertir des objets JavaScript en XML
-const convertirEnXML = (xmlDoc) => {
-  const serializer = new XMLSerializer();
-  return serializer.serializeToString(xmlDoc);
 };
 
+
+// Lecture du fichier XML
+const readXmlFile = async () => {
+  const donneesXML = await fs.promises.readFile(filePath, "utf8");
+  return parseXml(donneesXML);
+};
+
+// Écriture des données XML modifiées dans le fichier
+const writeXmlFile = async (xmlDoc) => {
+  const serializer = new XMLSerializer();
+  const xmlFinal = serializer.serializeToString(xmlDoc);
+  await fs.promises.writeFile(filePath, xmlFinal, { encoding: "utf8" });
+};
+
+// Trouver le cocktail par ID dans le document XML
+const trouverCocktail = (xmlDoc, id) => {
+  const cocktailsXml = Array.from(xmlDoc.getElementsByTagName("cocktail"));
+  return cocktailsXml.find(cocktail => 
+    cocktail.getElementsByTagName("id")[0]?.textContent === id
+  );
+};
+
+// Transformation d'une chaîne XML en un Document XML
 const parseXml = (data) => {
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(data, "application/xml");
   return xmlDoc;
 };
 
+
+
+// ROUTES
+// Récupérer la liste des cocktails en XML
+app.get("/liste", async (req, res) => {
+  try {
+    const data = await fs.promises.readFile(filePath, "utf8");
+    res.setHeader("Content-Type", "application/xml");
+    res.send(data);
+  } catch (error) {
+    res.status(500).send({ msg: "Erreur lors de la lecture du fichier" });
+  }
+});
+
+
 // Route pour ajouter un cocktail
 app.post("/liste", async (req, res) => {
   try {
     const cocktail = req.body;
-
-    // Lire le fichier XML existant
-    const donneesXML = await fs.promises.readFile(filePath, "utf8");
-
-    // Convertir l'ancien XML en objets JS
-    const xmlDoc = parseXml(donneesXML);
-
-    // Get the root element
+    const xmlDoc = await readXmlFile();
     const root = xmlDoc.getElementsByTagName("listeCocktails")[0];
-
-    // Add new cocktail node
+    
     const cocktailNode = xmlDoc.createElement("cocktail");
+    processCocktailProperties(xmlDoc, cocktailNode, cocktail);  // Use the helper function
 
-    // Map through cocktail properties and dynamically create child nodes
-    Object.entries(cocktail).forEach(([key, value]) => {
-      if (key === "ingredients") {
-        // handle 'ingredients' as separate <ingredient> nodes
-        value.forEach((ingredient) => {
-          const ingredientNode = xmlDoc.createElement("ingredient");
-          ingredientNode.textContent = ingredient;
-          cocktailNode.appendChild(ingredientNode);
-        });
-      } else {
-        // handle direct child nodes
-        const childNode = xmlDoc.createElement(key);
-        childNode.textContent = value;
-        cocktailNode.appendChild(childNode);
-      }
-    });
-
-    // Append the new cocktail node to the root
     root.appendChild(cocktailNode);
+    await writeXmlFile(xmlDoc);
 
-    // Convert the modified XML document back to string
-    const xmlFinal = convertirEnXML(xmlDoc);
-
-    // Write the updated XML back to the file
-    await fs.promises.writeFile(filePath, xmlFinal, { encoding: "utf8" });
-
-    res.setHeader("Content-Type", "application/json");
-    res.status(201).send({ msg: "Cocktail ajouté avec succès" });
+    res.status(201).json({ msg: "Cocktail ajouté avec succès" });
   } catch (error) {
     console.error("Erreur lors de l'ajout du cocktail :", error.message);
     res.status(500).send({ error: "Erreur lors de l'ajout du cocktail", details: error.message });
   }
 });
 
-app.put("/liste/:id", async (req, res) =>{
+
+// Route pour mettre à jour un cocktail
+app.put("/liste/:id", async (req, res) => {
   try {
     const cocktailId = req.params.id;
+    console.log(typeof cocktailId);
+    
     const cocktailMod = req.body;
+    const xmlDoc = await readXmlFile();
 
-    const donneesXML = await fs.promises.readFile(filePath, "utf8");
-    const xmlDoc = parseXml(donneesXML);
+    const targetCocktail = trouverCocktail(xmlDoc, cocktailId);
 
-    
-    const cocktailsXml = Array.from(xmlDoc.getElementsByTagName("cocktail"));
-  
-    const targetCocktail = cocktailsXml.find(cocktail => 
-      cocktail.getElementsByTagName("id")[0]?.textContent === cocktailId
-    );
-
-    
     if (!targetCocktail) {
       return res.status(404).json({ msg: "Cocktail non trouvé" });
     }
 
-    // Mettre à jour les propriétés du cocktail
-    Object.entries(cocktailMod).forEach(([key, value]) => {
-      if (key === "ingredients") {
-        // Supprimer les anciens noeuds <ingredient> et ajouter les nouveaux
-        Array.from(targetCocktail.getElementsByTagName("ingredient")).forEach(node => 
-          targetCocktail.removeChild(node)
-        );
-        value.forEach(ingredient => {
-          const ingredientNode = xmlDoc.createElement("ingredient");
-          ingredientNode.textContent = ingredient;
-          targetCocktail.appendChild(ingredientNode);
-        });
-      } else {
-        // Mettre à jour ou ajouter les autres propriétés
-        const existingNode = targetCocktail.getElementsByTagName(key)[0];
-        if (existingNode) {
-          existingNode.textContent = value;
-        } else {
-          const newNode = xmlDoc.createElement(key);
-          newNode.textContent = value;
-          targetCocktail.appendChild(newNode);
-        }
-      }
-    });
+    processCocktailProperties(xmlDoc, targetCocktail, cocktailMod);  // Use the helper function
 
-    const xmlFinal = convertirEnXML(xmlDoc);
-    await fs.promises.writeFile(filePath, xmlFinal, { encoding: "utf8" });
+    await writeXmlFile(xmlDoc);
     res.status(200).json({ msg: "Cocktail mis à jour avec succès" });
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Erreur lors de la mise à jour du cocktail :", error.message);
     res.status(500).json({ msg: "Erreur lors de la mise à jour du cocktail", details: error.message });
-
   }
-
 });
 
 
+
+// Route pour supprimer un cocktail
 app.delete("/liste/:id", async (req, res) => {
   const cocktailId = req.params.id;
 
   try {
-    // Lire le fichier XML existant
-    const donneesXML = await fs.promises.readFile(filePath, "utf8");
-    const xmlDoc = parseXml(donneesXML);
-
-    // Obtenir la liste des cocktails
+    const xmlDoc = await readXmlFile();
     const root = xmlDoc.getElementsByTagName("listeCocktails")[0];
-    const cocktails = Array.from(xmlDoc.getElementsByTagName("cocktail"));
+    const targetCocktail = trouverCocktail(xmlDoc, cocktailId);
 
-    // Trouver le cocktail à supprimer
-    const targetCocktail = cocktails.find(cocktail => 
-      cocktail.getElementsByTagName("id")[0]?.textContent === cocktailId
-    );
-    
     if (!targetCocktail) {
       return res.status(404).json({ error: "Cocktail non trouvé" });
     }
 
-    // Supprimer le cocktail du DOM
     root.removeChild(targetCocktail);
-
-    // Convertir le document XML mis à jour en chaîne
-    const xmlFinal = convertirEnXML(xmlDoc);
-    
-    // Écrire le fichier XML mis à jour
-    await fs.promises.writeFile(filePath, xmlFinal, { encoding: "utf8" });
+    await writeXmlFile(xmlDoc);
 
     res.status(200).json({ msg: "Cocktail supprimé avec succès" });
   } catch (error) {
@@ -221,8 +164,6 @@ app.delete("/liste/:id", async (req, res) => {
 });
 
 
-
-  
 // Démarrer le serveur
 app.listen(PORT, () => {
   console.log(`Serveur lancé sur http://localhost:${PORT}`);

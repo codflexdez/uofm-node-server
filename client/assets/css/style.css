@@ -8,10 +8,12 @@
     height: 100%;
 }
 
+
 .buttons {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 0.5rem;
+   margin-left: auto;
 }
 
 .img{
@@ -19,8 +21,8 @@
     overflow: hidden;
 } 
 
-.card-body{
-    padding: 8px;
+.cbody {
+    width: 100%;
 }
 
 .card-text {
@@ -35,6 +37,10 @@
 
 .ingredients {
     max-width: 30ch;
+}
+
+.subtitle {
+    font-weight: 600;
 }
 
 /* CSS pour la pagination */
@@ -77,7 +83,8 @@
     .img {
         max-width: 100%;
     }
+ 
     .buttons {
-        flex-direction: column;
+       width: 100%;
     }
  }
